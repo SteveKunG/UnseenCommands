@@ -1,0 +1,25 @@
+{
+    "schemaVersion": 1,
+    "id": "unseencommands",
+    "version": "1.0.0",
+    "name": "Unseen Commands",
+    "description": "Re-enables secret commands that Mojang didn't tell us",
+    "authors": [
+        "SteveKunG"
+    ],
+    "icon": "logo.png",
+    "contact": {
+        "homepage": "https://modrinth.com/mod/unseencommands",
+        "sources": "https://github.com/SteveKunG/UnseenCommands",
+        "issues": "https://github.com/SteveKunG/UnseenCommands/issues"
+    },
+    "license": "MIT",
+    "environment": "*",
+    "depends": {
+        "fabricloader": "*",
+        "minecraft": ">=1.18"
+    },
+    "mixins": [
+        "mixins.unseencommands.json"
+    ]
+}
