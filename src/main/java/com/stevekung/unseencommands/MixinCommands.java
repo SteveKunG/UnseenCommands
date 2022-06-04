@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.mojang.brigadier.CommandDispatcher;
 
+import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.Commands.CommandSelection;
@@ -22,11 +23,13 @@ public class MixinCommands
     CommandDispatcher<CommandSourceStack> dispatcher;
 
     @Inject(method = "<init>", at = @At("TAIL"))
-    private void addSecretCommands(CommandSelection commandSelection, CallbackInfo info)
+    private void addSecretCommands(CommandSelection commandSelection, CommandBuildContext commandBuildContext, CallbackInfo info)
     {
         ChaseCommand.register(this.dispatcher);
         RaidCommand.register(this.dispatcher);
         ResetChunksCommand.register(this.dispatcher);
+        WardenSpawnTrackerCommand.register(this.dispatcher);
+
         DebugPathCommand.register(this.dispatcher);
         DebugMobSpawningCommand.register(this.dispatcher);
     }

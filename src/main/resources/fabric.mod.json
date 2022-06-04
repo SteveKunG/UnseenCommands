@@ -17,7 +17,7 @@
     "environment": "*",
     "depends": {
         "fabricloader": "*",
-        "minecraft": ">=1.18"
+        "minecraft": ">=1.19-rc.2"
     },
     "mixins": [
         "mixins.unseencommands.json"
