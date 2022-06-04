@@ -4,12 +4,7 @@
     "package": "com.stevekung.unseencommands",
     "compatibilityLevel": "JAVA_17",
     "mixins": [
-        "MixinCommands",
-        "MixinDebugPackets",
-        "MixinPath"
-    ],
-    "client": [
-        "client.MixinDebugRenderer"
+        "MixinCommands"
     ],
     "injectors": {
         "defaultRequire": 1
