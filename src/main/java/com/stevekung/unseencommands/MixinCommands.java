@@ -11,7 +11,6 @@ import com.mojang.brigadier.CommandDispatcher;
 
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-import net.minecraft.commands.Commands.CommandSelection;
 import net.minecraft.server.commands.*;
 
 @Mixin(Commands.class)
@@ -21,8 +20,8 @@ public class MixinCommands
     @Final
     CommandDispatcher<CommandSourceStack> dispatcher;
 
-    @Inject(method = "<init>", at = @At("TAIL"))
-    private void addSecretCommands(CommandSelection commandSelection, CallbackInfo info)
+    @Inject(method = "<init>*", at = @At("TAIL"))
+    private void addSecretCommands(CallbackInfo info)
     {
         ChaseCommand.register(this.dispatcher);
         RaidCommand.register(this.dispatcher);
