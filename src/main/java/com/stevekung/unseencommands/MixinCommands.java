@@ -27,6 +27,8 @@ public class MixinCommands
         ChaseCommand.register(this.dispatcher);
         RaidCommand.register(this.dispatcher);
         ResetChunksCommand.register(this.dispatcher);
+        SpawnArmorTrimsCommand.register(this.dispatcher);
+
         DebugPathCommand.register(this.dispatcher);
         DebugMobSpawningCommand.register(this.dispatcher);
     }

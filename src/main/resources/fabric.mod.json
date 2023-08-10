@@ -1,13 +1,12 @@
 {
     "schemaVersion": 1,
     "id": "unseencommands",
-    "version": "1.0.0",
+    "version": "${version}",
     "name": "Unseen Commands",
     "description": "Re-enables secret commands that Mojang didn't tell us",
     "authors": [
         "SteveKunG"
     ],
-    "icon": "logo.png",
     "contact": {
         "homepage": "https://modrinth.com/mod/unseencommands",
         "sources": "https://github.com/SteveKunG/UnseenCommands",
@@ -17,7 +16,7 @@
     "environment": "*",
     "depends": {
         "fabricloader": "*",
-        "minecraft": ">=1.18"
+        "minecraft": ">=1.20"
     },
     "mixins": [
         "mixins.unseencommands.json"

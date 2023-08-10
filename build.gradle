@@ -1,5 +1,6 @@
 plugins {
-    id "fabric-loom" version "0.11-SNAPSHOT"
+    id "fabric-loom" version "1.2-SNAPSHOT"
+    id "io.github.juuxel.loom-vineflower" version "1.11.0"
 }
 
 sourceCompatibility = JavaVersion.VERSION_17
@@ -17,8 +18,8 @@ loom {
     runs {
         client {
             programArgs "--username", "${username}", "--uuid", "${uuid}"
-            vmArg "-Dmixin.debug.export=true"
-            vmArg "-Dmixin.hotSwap=true"
+            property "mixin.debug.export", "true"
+            property "mixin.hotSwap", "true"
         }
     }
 }
@@ -27,6 +28,9 @@ repositories {
     maven {
         name "ParchmentMC"
         url "https://maven.parchmentmc.org"
+        content {
+            includeGroup "org.parchmentmc.data"
+        }
     }
 }
 
@@ -34,10 +38,9 @@ dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
     mappings loom.layered() {
         officialMojangMappings()
-        parchment("org.parchmentmc.data:parchment-${rootProject.parchmentmc_version}@zip")
+        parchment("org.parchmentmc.data:parchment-${parchmentmc_version}@zip")
     }
     modImplementation "net.fabricmc:fabric-loader:${loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
 }
 
 processResources {
@@ -58,4 +61,15 @@ remapJar {
 tasks.withType(JavaCompile).configureEach {
     it.options.encoding = "UTF-8"
     it.options.release = 17
+}
+
+afterEvaluate {
+    loom {
+        runs {
+            configureEach {
+                def mixinJarFile = configurations.compileClasspath.files { it.group == "net.fabricmc" && it.name == "sponge-mixin" }.first()
+                vmArg("-javaagent:$mixinJarFile")
+            }
+        }
+    }
 }
